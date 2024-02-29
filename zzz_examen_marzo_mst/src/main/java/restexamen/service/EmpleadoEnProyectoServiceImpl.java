@@ -1,0 +1,62 @@
+package restexamen.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import restexamen.modelo.entities.EmpleadoEnProyecto;
+import restexamen.repository.EmpleadoEnProyectoRepository;
+
+@Service
+public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService {
+
+	@Autowired
+	private EmpleadoEnProyectoRepository empleadoEnProyectoRepository;
+	
+	@Override
+	public EmpleadoEnProyecto insertOne(EmpleadoEnProyecto empleadoEnProyecto) {
+		
+		return empleadoEnProyectoRepository.save(empleadoEnProyecto);
+	}
+
+	@Override
+	public EmpleadoEnProyecto findOne(int idEntrada) {
+		
+		return empleadoEnProyectoRepository.findById(idEntrada).orElse(null);
+	}
+
+	@Override
+	public List<EmpleadoEnProyecto> findAll() {
+		
+		return empleadoEnProyectoRepository.findAll();
+	}
+
+	@Override
+	public EmpleadoEnProyecto updateOne(EmpleadoEnProyecto empleadoEnProyecto) {
+	
+		try {
+			
+			return empleadoEnProyectoRepository.save(empleadoEnProyecto);
+			
+		} catch (Exception e) {
+			
+			return null;
+		}
+	}
+
+	@Override
+	public boolean deleteOne(int idEntrada) {
+		
+		try {
+			empleadoEnProyectoRepository.deleteById(idEntrada);
+			
+			return true;
+			
+		} catch (Exception e) {
+			
+			return false;
+		}
+	}
+
+}
