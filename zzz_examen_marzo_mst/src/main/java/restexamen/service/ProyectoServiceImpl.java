@@ -15,12 +15,16 @@ public class ProyectoServiceImpl implements ProyectoService {
 	@Autowired
 	private ProyectoRepository proyectoRepository;
 
+	// CREATE
+	
 	@Override
 	public Proyecto insertOne(Proyecto proyecto) {
 		
 		return proyectoRepository.save(proyecto);
 	}
 
+	// READ
+	
 	@Override
 	public Proyecto findOne(int idProyecto) {
 		
@@ -39,6 +43,8 @@ public class ProyectoServiceImpl implements ProyectoService {
 		return proyectoRepository.findDirectorPorProyecto(idProyecto);
 	}
 	
+	// UPDATE
+	
 	@Override
 	public Proyecto updateOne(Proyecto proyecto) {
 	
@@ -54,6 +60,27 @@ public class ProyectoServiceImpl implements ProyectoService {
 		} catch (Exception e) {
 			
 			return null;
+		}
+	}
+	
+	// DELETE
+	
+	@Override
+	public boolean deleteOne(int idProyecto) {
+		
+		try {
+			
+			if (findOne(idProyecto) != null) {
+				proyectoRepository.deleteById(idProyecto);
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			
+			return false;
 		}
 	}
 	
@@ -87,25 +114,6 @@ public class ProyectoServiceImpl implements ProyectoService {
 	}
 	*/
 
-	@Override
-	public boolean deleteOne(int idProyecto) {
-		
-		try {
-			
-			if (findOne(idProyecto) != null) {
-				proyectoRepository.deleteById(idProyecto);
-				return true;
-			}
-			else {
-				return false;
-			}
-			
-		} catch (Exception e) {
-			
-			return false;
-		}
-	}
-	
 	/*
 	@Override
 	public boolean deleteOne(int idProyecto) {

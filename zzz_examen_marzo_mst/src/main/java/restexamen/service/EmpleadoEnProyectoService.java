@@ -2,6 +2,7 @@ package restexamen.service;
 
 import java.util.List;
 
+import restexamen.modelo.entities.Empleado;
 import restexamen.modelo.entities.EmpleadoEnProyecto;
 
 public interface EmpleadoEnProyectoService {
@@ -12,6 +13,7 @@ public interface EmpleadoEnProyectoService {
 	// Read
 	EmpleadoEnProyecto findOne(int idEntrada);
 	List<EmpleadoEnProyecto> findAll();
+	List<Empleado> findEmpleados(int idProyecto);
 		
 	// Update
 	EmpleadoEnProyecto updateOne(EmpleadoEnProyecto empleadoEnProyecto);

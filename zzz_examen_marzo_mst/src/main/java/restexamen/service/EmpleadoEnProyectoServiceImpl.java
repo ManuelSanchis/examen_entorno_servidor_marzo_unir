@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import restexamen.modelo.entities.Empleado;
 import restexamen.modelo.entities.EmpleadoEnProyecto;
 import restexamen.repository.EmpleadoEnProyectoRepository;
 
@@ -14,12 +15,16 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 	@Autowired
 	private EmpleadoEnProyectoRepository empleadoEnProyectoRepository;
 	
+	// CREATE
+	
 	@Override
 	public EmpleadoEnProyecto insertOne(EmpleadoEnProyecto empleadoEnProyecto) {
 		
 		return empleadoEnProyectoRepository.save(empleadoEnProyecto);
 	}
 
+	// READ
+	
 	@Override
 	public EmpleadoEnProyecto findOne(int idEntrada) {
 		
@@ -31,7 +36,16 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 		
 		return empleadoEnProyectoRepository.findAll();
 	}
+	
+	@Override
+	public List<Empleado> findEmpleados(int idProyecto) {
+		
+		return empleadoEnProyectoRepository.findEmpleadosEnProyecto(idProyecto);
+		
+	}
 
+	// UPDATE
+	
 	@Override
 	public EmpleadoEnProyecto updateOne(EmpleadoEnProyecto empleadoEnProyecto) {
 	
@@ -47,6 +61,27 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 		} catch (Exception e) {
 			
 			return null;
+		}
+	}
+	
+	// DELETE
+	
+	@Override
+	public boolean deleteOne(int idEntrada) {
+		
+		try {
+			
+			if (findOne(idEntrada) != null) {
+			empleadoEnProyectoRepository.deleteById(idEntrada);
+			return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			
+			return false;
 		}
 	}
 	
@@ -80,25 +115,6 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 	}
 	*/
 
-	@Override
-	public boolean deleteOne(int idEntrada) {
-		
-		try {
-			
-			if (findOne(idEntrada) != null) {
-			empleadoEnProyectoRepository.deleteById(idEntrada);
-			return true;
-			}
-			else {
-				return false;
-			}
-			
-		} catch (Exception e) {
-			
-			return false;
-		}
-	}
-	
 	/*
 	@Override
 	public boolean deleteOne(int idEntrada) {

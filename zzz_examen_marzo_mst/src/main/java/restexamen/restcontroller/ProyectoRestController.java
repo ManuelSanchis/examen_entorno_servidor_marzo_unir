@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import restexamen.modelo.entities.Empleado;
 import restexamen.modelo.entities.Proyecto;
+import restexamen.service.EmpleadoEnProyectoService;
 import restexamen.service.ProyectoService;
 
 @RestController
@@ -21,6 +22,9 @@ public class ProyectoRestController {
 	
 	@Autowired
 	private ProyectoService proyectoService;
+	
+	@Autowired
+	private EmpleadoEnProyectoService empleadoEnProyectoService;
 	
 	// CREATE
 	
@@ -43,6 +47,12 @@ public class ProyectoRestController {
 	public Empleado mostrarDirector(@PathVariable int idProyecto) {
 		
 		return proyectoService.findDirector(idProyecto);
+	}
+	
+	@GetMapping("/mostrarEmpleados/{idProyecto}")
+	public List<Empleado> mostrarEmpleados(@PathVariable int idProyecto) {
+		
+		return empleadoEnProyectoService.findEmpleados(idProyecto);
 	}
 		
 	// UPDATE

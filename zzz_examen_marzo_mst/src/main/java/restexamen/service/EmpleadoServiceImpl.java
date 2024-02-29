@@ -14,12 +14,16 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	@Autowired
 	private EmpleadoRepository empleadoRepository;
 	
+	// CREATE
+	
 	@Override
 	public Empleado insertOne(Empleado empleado) {
 		
 		return empleadoRepository.save(empleado);
 	}
 
+	// READ
+	
 	@Override
 	public Empleado findOne(int idEmpleado) {
 		
@@ -32,6 +36,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		return empleadoRepository.findAll();
 	}
 
+	// UPDATE
+	
 	@Override
 	public Empleado updateOne(Empleado empleado) {
 		
@@ -47,6 +53,27 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		} catch (Exception e) {
 			
 			return null;
+		}
+	}
+	
+	// DELETE
+	
+	@Override
+	public boolean deleteOne(int idEmpleado) {
+		
+		try {
+			
+			if (findOne(idEmpleado) != null) {
+			empleadoRepository.deleteById(idEmpleado);
+			return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			
+			return false;
 		}
 	}
 	
@@ -80,25 +107,6 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 	}
 	*/
 
-	@Override
-	public boolean deleteOne(int idEmpleado) {
-		
-		try {
-			
-			if (findOne(idEmpleado) != null) {
-			empleadoRepository.deleteById(idEmpleado);
-			return true;
-			}
-			else {
-				return false;
-			}
-			
-		} catch (Exception e) {
-			
-			return false;
-		}
-	}
-	
 	/*
 	@Override
 	public boolean deleteOne(int idEmpleado) {
