@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import restexamen.modelo.entities.Empleado;
 import restexamen.modelo.entities.Proyecto;
 import restexamen.repository.ProyectoRepository;
 
@@ -31,6 +32,12 @@ public class ProyectoServiceImpl implements ProyectoService {
 		
 		return proyectoRepository.findAll();
 	}
+	
+	@Override
+	public Empleado findDirector(int idProyecto) {
+		
+		return proyectoRepository.findDirectorPorProyecto(idProyecto);
+	}
 
 	@Override
 	public Proyecto updateOne(Proyecto proyecto) {
@@ -44,6 +51,21 @@ public class ProyectoServiceImpl implements ProyectoService {
 			return null;
 		}
 	}
+	
+	/*
+	@Override
+	public Proyecto updateOne(Proyecto proyecto) {
+		
+		if (findOne(proyecto.getIdProyecto()) != null) {
+			
+			return proyectoRepository.save(proyecto);
+		}
+		else {
+			
+			return null;
+		}
+	}
+	*/
 
 	@Override
 	public boolean deleteOne(int idProyecto) {
@@ -58,5 +80,6 @@ public class ProyectoServiceImpl implements ProyectoService {
 			return false;
 		}
 	}
+
 
 }

@@ -44,6 +44,21 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 			return null;
 		}
 	}
+	
+	/*
+	@Override
+	public EmpleadoEnProyecto updateOne(EmpleadoEnProyecto empleadoEnProyecto) {
+		
+		if (findOne(empleadoEnProyecto.getIdEntrada()) != null) {
+			
+			return empleadoEnProyectoRepository.save(empleadoEnProyecto);
+		}
+		else {
+			
+			return null;
+		}
+	}
+	*/
 
 	@Override
 	public boolean deleteOne(int idEntrada) {

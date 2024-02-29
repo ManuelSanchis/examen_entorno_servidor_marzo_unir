@@ -44,6 +44,21 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 			return null;
 		}
 	}
+	
+	/*
+	@Override
+	public Empleado updateOne(Empleado empleado) {
+		
+		if (findOne(empleado.getIdEmpleado()) != null) {
+			
+			return empleadoRepository.save(empleado);
+		}
+		else {
+			
+			return null;
+		}
+	}
+	*/
 
 	@Override
 	public boolean deleteOne(int idEmpleado) {
