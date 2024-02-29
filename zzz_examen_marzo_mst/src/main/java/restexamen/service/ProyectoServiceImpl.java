@@ -38,7 +38,26 @@ public class ProyectoServiceImpl implements ProyectoService {
 		
 		return proyectoRepository.findDirectorPorProyecto(idProyecto);
 	}
-
+	
+	@Override
+	public Proyecto updateOne(Proyecto proyecto) {
+	
+		try {
+			
+			if (findOne(proyecto.getIdProyecto()) != null) {
+				return proyectoRepository.save(proyecto);
+			}
+			else {
+				return null;
+			}
+			
+		} catch (Exception e) {
+			
+			return null;
+		}
+	}
+	
+	/*
 	@Override
 	public Proyecto updateOne(Proyecto proyecto) {
 	
@@ -51,6 +70,7 @@ public class ProyectoServiceImpl implements ProyectoService {
 			return null;
 		}
 	}
+	*/
 	
 	/*
 	@Override
@@ -71,6 +91,26 @@ public class ProyectoServiceImpl implements ProyectoService {
 	public boolean deleteOne(int idProyecto) {
 		
 		try {
+			
+			if (findOne(idProyecto) != null) {
+				proyectoRepository.deleteById(idProyecto);
+				return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			
+			return false;
+		}
+	}
+	
+	/*
+	@Override
+	public boolean deleteOne(int idProyecto) {
+		
+		try {
 			proyectoRepository.deleteById(idProyecto);
 			
 			return true;
@@ -80,6 +120,6 @@ public class ProyectoServiceImpl implements ProyectoService {
 			return false;
 		}
 	}
-
-
+	*/
+	
 }

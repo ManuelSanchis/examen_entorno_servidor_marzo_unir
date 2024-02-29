@@ -59,3 +59,14 @@ VALUES ('Proyecto Pedir Atencion', '2024-07-05', 45, 2, 'Pendiente');
 -- Insertar proyecto de gatitos 5
 INSERT INTO proyectos (descripcion, fecha_inicio, dias_previstos, director, estado) 
 VALUES ('Proyecto Despertar a los Humanos', '2024-07-05', 45, 1, 'Pendiente');
+
+-- INSERTAR EMPLEADOS_EN_PROYECTO
+
+INSERT INTO empleados_en_proyecto (id_proyecto, id_empleado, dias_previstos, fecha_incorporacion) 
+VALUES (1, 4, 30, '2024-03-05');
+
+INSERT INTO empleados_en_proyecto (id_proyecto, id_empleado, dias_previstos, fecha_incorporacion) 
+VALUES (1, 5, 30, '2024-03-05');
+
+INSERT INTO empleados_en_proyecto (id_proyecto, id_empleado, dias_previstos, fecha_incorporacion) 
+VALUES (2, 6, 30, '2024-03-05');

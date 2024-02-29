@@ -37,6 +37,25 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 	
 		try {
 			
+			if (findOne(empleadoEnProyecto.getIdEntrada()) != null) {	
+				return empleadoEnProyectoRepository.save(empleadoEnProyecto);
+			}
+			else {
+				return null;
+			}
+			
+		} catch (Exception e) {
+			
+			return null;
+		}
+	}
+	
+	/*
+	@Override
+	public EmpleadoEnProyecto updateOne(EmpleadoEnProyecto empleadoEnProyecto) {
+	
+		try {
+			
 			return empleadoEnProyectoRepository.save(empleadoEnProyecto);
 			
 		} catch (Exception e) {
@@ -44,6 +63,7 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 			return null;
 		}
 	}
+	*/
 	
 	/*
 	@Override
@@ -64,6 +84,26 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 	public boolean deleteOne(int idEntrada) {
 		
 		try {
+			
+			if (findOne(idEntrada) != null) {
+			empleadoEnProyectoRepository.deleteById(idEntrada);
+			return true;
+			}
+			else {
+				return false;
+			}
+			
+		} catch (Exception e) {
+			
+			return false;
+		}
+	}
+	
+	/*
+	@Override
+	public boolean deleteOne(int idEntrada) {
+		
+		try {
 			empleadoEnProyectoRepository.deleteById(idEntrada);
 			
 			return true;
@@ -73,5 +113,6 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 			return false;
 		}
 	}
+	*/
 
 }
