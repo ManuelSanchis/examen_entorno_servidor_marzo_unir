@@ -31,5 +31,6 @@ foreign key(id_proyecto) references proyectos(id_proyecto),
 foreign key(id_empleado) references empleados(id_empleado)
 );
 
+-- drop user admin_unir;
 create user admin_unir identified by 'admin';
 grant all privileges on proyectos_empleados_2024.* to admin_unir;
