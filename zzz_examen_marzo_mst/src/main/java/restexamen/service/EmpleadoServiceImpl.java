@@ -35,6 +35,12 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 		
 		return empleadoRepository.findAll();
 	}
+	
+	@Override
+	public List<Empleado> findEmpleadosSinProyecto() {
+		
+		return empleadoRepository.findEmpleadosSinProyecto();
+	}
 
 	// UPDATE
 	
@@ -76,6 +82,8 @@ public class EmpleadoServiceImpl implements EmpleadoService {
 			return false;
 		}
 	}
+	
+	// Métodos alternativos
 	
 	/*
 	@Override

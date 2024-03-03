@@ -38,7 +38,7 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 	}
 	
 	@Override
-	public List<Empleado> findEmpleados(int idProyecto) {
+	public List<Empleado> findEmpleadosEnProyecto(int idProyecto) {
 		
 		return empleadoEnProyectoRepository.findEmpleadosEnProyecto(idProyecto);
 		
@@ -84,6 +84,8 @@ public class EmpleadoEnProyectoServiceImpl implements EmpleadoEnProyectoService 
 			return false;
 		}
 	}
+	
+	// Métodos alternativos
 	
 	/*
 	@Override

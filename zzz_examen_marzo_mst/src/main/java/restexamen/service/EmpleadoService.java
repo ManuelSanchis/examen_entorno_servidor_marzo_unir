@@ -12,6 +12,7 @@ public interface EmpleadoService {
 	// Read
 	Empleado findOne(int idEmpleado);
 	List<Empleado> findAll();
+	List<Empleado> findEmpleadosSinProyecto();
 		
 	// Update
 	Empleado updateOne(Empleado empleado);

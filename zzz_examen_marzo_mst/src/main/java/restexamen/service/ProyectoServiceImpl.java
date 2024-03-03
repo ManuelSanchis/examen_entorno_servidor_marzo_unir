@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import restexamen.modelo.entities.Empleado;
 import restexamen.modelo.entities.Proyecto;
+import restexamen.repository.EmpleadoRepository;
 import restexamen.repository.ProyectoRepository;
 
 @Service
@@ -14,11 +15,19 @@ public class ProyectoServiceImpl implements ProyectoService {
 	
 	@Autowired
 	private ProyectoRepository proyectoRepository;
+	
+	@Autowired
+	private EmpleadoRepository empleadoRepository;
 
 	// CREATE
 	
 	@Override
 	public Proyecto insertOne(Proyecto proyecto) {
+		
+		if(proyecto.getEmpleado() != null) {
+			Empleado empleado = empleadoRepository.findById(proyecto.getEmpleado().getIdEmpleado()).orElse(null);
+			proyecto.setEmpleado(empleado);
+		}
 		
 		return proyectoRepository.save(proyecto);
 	}
@@ -83,6 +92,16 @@ public class ProyectoServiceImpl implements ProyectoService {
 			return false;
 		}
 	}
+	
+	// Métodos alternativos
+	
+	/*
+	@Override
+	public Proyecto insertOne(Proyecto proyecto) {
+		
+		return proyectoRepository.save(proyecto);
+	}
+	*/
 	
 	/*
 	@Override

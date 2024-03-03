@@ -69,6 +69,11 @@ public class EmpleadoRestController {
 		return empleadoService.findAll();
 	}
 	
+	@GetMapping("/mostrarSinProyecto")
+	public List<Empleado> mostrarSinProyecto(){
+		return empleadoService.findEmpleadosSinProyecto();
+	}
+	
 	// UPDATE
 	
 	@PutMapping("/modificarEmpleado")
