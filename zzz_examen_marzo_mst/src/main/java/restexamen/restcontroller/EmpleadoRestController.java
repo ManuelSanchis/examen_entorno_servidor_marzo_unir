@@ -24,14 +24,26 @@ import restexamen.service.ProyectoService;
 @CrossOrigin(origins = "*")
 public class EmpleadoRestController {
 	
+	/*
+	 * POSIBLES PREGUNTAS EN EL EXAMEN
+	 * 
+	 * - Asignar empleados
+	 * - Ver empleados
+	 * - Ver empleados sin proyecto
+	 */
+	
 	// ¡¡No se muestra el HttpStatus!!
 	
+
+	// Desde el rest llamamos a los metodos del service.
+	
+	// Indica que Spring debe automáticamente inyectar una instancia de las clases especificadas.
 	@Autowired
 	private EmpleadoService empleadoService;
-	
+	// Indica que Spring debe automáticamente inyectar una instancia de las clases especificadas.
 	@Autowired
 	private EmpleadoEnProyectoService empleadoEnProyectoService;
-	
+	// Indica que Spring debe automáticamente inyectar una instancia de las clases especificadas.
 	@Autowired
 	private ProyectoService proyectoService;
 	
@@ -43,15 +55,30 @@ public class EmpleadoRestController {
 		return empleadoService.insertOne(empleado);
 	}
 	
+	// Asignar empleados
+	
+	/**
+	 * Método asociado a la ruta "/elegirEmpleado" que responde a las solicitudes HTTP POST.
+	 * Recibe un objeto DTO de tipo EmpleadoEnProyectoDto en el cuerpo de la solicitud mediante la anotación @RequestBody.
+	 * Este método se encarga de asignar un empleado a un proyecto, creando y registrando un 
+	 * objeto EmpleadoEnProyecto en la base de datos.
+	 *
+	 * @param empleadoEnProyectoDto Objeto de tipo EmpleadoEnProyectoDto que contiene la información necesaria para la asignación.
+	 * @return El objeto EmpleadoEnProyecto recién creado y registrado en la base de datos.
+	 */
 	@PostMapping("/elegirEmpleado")
 	public EmpleadoEnProyecto elegirEmpleado(@RequestBody EmpleadoEnProyectoDto empleadoEnProyectoDto) {
-		
+		// Crea un nuevo objeto EmpleadoEnProyecto.
 		EmpleadoEnProyecto empleado = new EmpleadoEnProyecto();
+		// Establece los días previstos del proyecto obteniéndolos a través del servicio proyectoService.
 		empleado.setDiasPrevistos(proyectoService.findOne(empleadoEnProyectoDto.getIdProyecto()).getDiasPrevistos());
+		// Establece la fecha de incorporación del empleado como la fecha actual.
 		empleado.setFechaIncorporacion(new Date());
+		// Establece el empleado en base al ID proporcionado en el EmpleadoEnProyectoDto.
 		empleado.setEmpleado(empleadoService.findOne(empleadoEnProyectoDto.getIdEmpleado()));
+		// Establece el proyecto en base al ID proporcionado en el EmpleadoEnProyectoDto.
 		empleado.setProyecto(proyectoService.findOne(empleadoEnProyectoDto.getIdProyecto()));
-		
+		// Inserta el empleado en el proyecto
 		return empleadoEnProyectoService.insertOne(empleado);
 	}
 	
@@ -63,14 +90,33 @@ public class EmpleadoRestController {
 		return empleadoService.findOne(idEmpleado);
 	}
 	
+	// Ver empleados
+	
+	/**
+	 * Método asociado a la ruta "/mostrarEmpleados" que responde a las solicitudes HTTP GET.
+	 * Devuelve una lista que contiene a todos los empleados registrados en la base de datos.
+	 *
+	 * @return Lista de todos los empleados.
+	 */
 	@GetMapping("/mostrarEmpleados")
 	public List<Empleado> mostrarEmpleados() {
-		
+		// Invoca el servicio empleadoService para recuperar la lista completa de empleados.
+	    // Devuelve la lista de empleados.
 		return empleadoService.findAll();
 	}
 	
+	// Ver empleados sin proyecto
+	
+	/**
+	 * Método asociado a la ruta "/mostrarSinProyecto" que responde a las solicitudes HTTP GET.
+	 * Devuelve una lista de empleados que actualmente no tienen asignado ningún proyecto.
+	 *
+	 * @return Lista de empleados sin proyecto asignado.
+	 */
 	@GetMapping("/mostrarSinProyecto")
 	public List<Empleado> mostrarSinProyecto(){
+		// Invoca el servicio empleadoService para recuperar la lista de empleados sin proyecto asignado.
+		// Devuelve la lista de empleados sin proyecto.
 		return empleadoService.findEmpleadosSinProyecto();
 	}
 	
