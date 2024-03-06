@@ -65,7 +65,7 @@ public class ProyectoRestController {
 	 * @return Objeto Proyecto que contiene la información del proyecto encontrado.
 	 */
 	@GetMapping("/mostrarProyecto/{idProyecto}")
-	public Proyecto mostrarEmpleado(@PathVariable int idProyecto) {
+	public Proyecto mostrarProyecto(@PathVariable int idProyecto) {
 		// Invoca el servicio proyectoService para recuperar la información del proyecto con el ID proporcionado.
 	    // Devuelve el proyecto con el ID específico.
 		return proyectoService.findOne(idProyecto);
